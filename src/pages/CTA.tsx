@@ -30,9 +30,25 @@ export function CTA() {
   });
 
   const contactMethods = [
-    { icon: Mail, label: "Email Us", value: "hello@frontcloud.com" },
-    { icon: Phone, label: "Call Us", value: "+1 (555) 123-4567" },
-    { icon: MessageSquare, label: "Live Chat", value: "Available 24/7" },
+    {
+      icon: Mail,
+      label: "Email Us",
+      value: "info@frontcloud.com.sa",
+      href: "mailto:info@frontcloud.com.sa",
+    },
+    {
+      icon: Phone,
+      label: "Call Us",
+      value: "+966 50 457 6354",
+      href: "tel:+966504576354",
+    },
+    {
+      icon: MessageSquare,
+      label: "Live Chat",
+      value: "WhatsApp",
+      href: "https://wa.me/966504576354",
+      target: "_blank",
+    },
   ];
 
   return (
@@ -165,19 +181,22 @@ export function CTA() {
               className="mt-12 grid md:grid-cols-3 gap-6"
             >
               {contactMethods.map((method, index) => (
-                <motion.div
+                <motion.a
                   key={index}
+                  href={method.href}
+                  target={method.target}
+                  rel={method.target === "_blank" ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, y: 20 }}
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                   }
                   transition={{ delay: 0.7 + index * 0.1 }}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-colors"
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   <method.icon className="w-8 h-8 text-white mx-auto mb-3" />
                   <h4 className="text-white mb-2">{method.label}</h4>
                   <p className="text-white/80">{method.value}</p>
-                </motion.div>
+                </motion.a>
               ))}
             </motion.div>
           </div>
@@ -190,25 +209,9 @@ export function CTA() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="flex flex-wrap justify-center gap-6 mb-6 text-gray-600">
-            <a href="#" className="hover:text-[#00BFFF] transition-colors">
-              Privacy Policy
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#00BFFF] transition-colors">
-              Terms of Service
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#00BFFF] transition-colors">
-              Careers
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#00BFFF] transition-colors">
-              Blog
-            </a>
-          </div>
           <p className="text-gray-500">
-            © 2025 Front Cloud. Building the future, one innovation at a time.
+            © {new Date().getFullYear()} Front Cloud. Building the future, one
+            innovation at a time.
           </p>
         </motion.div>
       </div>

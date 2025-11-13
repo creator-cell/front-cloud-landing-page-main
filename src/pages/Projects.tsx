@@ -51,38 +51,6 @@ export function Projects() {
       gradient: "from-[#00BFFF] to-blue-600",
       tags: ["React", "WebRTC", "AWS"],
     },
-    {
-      icon: Database,
-      title: "Data Analytics Hub",
-      description:
-        "Comprehensive data visualization and analytics platform providing real-time insights, custom dashboards, and predictive modeling for data-driven decision making.",
-      gradient: "from-indigo-500 to-purple-600",
-      tags: ["D3.js", "Python", "BigQuery"],
-    },
-    {
-      icon: Video,
-      title: "StreamConnect",
-      description:
-        "Next-generation video conferencing and streaming platform with HD quality, screen sharing, recording capabilities, and interactive features for modern communication.",
-      gradient: "from-rose-500 to-pink-600",
-      tags: ["WebRTC", "Node.js", "Redis"],
-    },
-    {
-      icon: FileText,
-      title: "DocuFlow AI",
-      description:
-        "Intelligent document management system with OCR, automated categorization, smart search, and AI-powered content extraction for efficient workflow automation.",
-      gradient: "from-yellow-500 to-orange-500",
-      tags: ["OCR", "NLP", "MongoDB"],
-    },
-    {
-      icon: BarChart,
-      title: "Business Intelligence Suite",
-      description:
-        "Advanced BI platform delivering actionable insights through interactive reports, KPI tracking, forecasting models, and comprehensive business analytics.",
-      gradient: "from-cyan-500 to-blue-500",
-      tags: ["React", "Tableau", "SQL"],
-    },
   ];
 
   return (

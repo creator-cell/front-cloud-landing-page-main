@@ -95,43 +95,12 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8 inline-flex items-center gap-3"
-        >
-          <div className="relative">
-            {/* <Cloud className="w-20 h-20 text-[#00BFFF]" strokeWidth={1.5} /> */}
-            <Image src={"/logo/logo.png"} alt="Logo" width={80} height={80} />
-            <motion.div
-              className="absolute inset-0 rounded-full bg-[#00BFFF]/20 blur-2xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.5, 0.8, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </div>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <h1 className="text-[#00BFFF] tracking-tight">Front Cloud</h1>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mb-12"
         >
-          <h2 className="mb-4 bg-gradient-to-r from-gray-900 via-[#00BFFF] to-gray-900 bg-clip-text text-transparent">
+          <h2 className="mb-4 bg-gradient-to-r from-gray-900 via-[#00BFFF] to-gray-900 bg-clip-text text-transparent text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
             Building the Future of Software & AI
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">

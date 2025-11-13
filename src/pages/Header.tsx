@@ -7,16 +7,8 @@ import Image from "next/image";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.95)"]
-  );
-  const backdropBlur = useTransform(
-    scrollY,
-    [0, 100],
-    ["blur(0px)", "blur(10px)"]
-  );
+  const backgroundColor = "rgba(255, 255, 255, 1)";
+  const backdropBlur = "blur(0px)";
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -38,7 +30,7 @@ export function Header() {
     <>
       <motion.header
         style={{ backgroundColor, backdropFilter: backdropBlur }}
-        className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200/50"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200/80 shadow-sm"
       >
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -54,7 +46,7 @@ export function Header() {
             <div>
               <Image src={"/logo/logo.png"} alt="Logo" width={46} height={46} />
             </div>
-            <span className="text-gray-900 tracking-tight text-[18px]">
+            <span className="text-gray-900 tracking-tight text-[18px] font-semibold">
               Front Cloud
             </span>
           </motion.a>

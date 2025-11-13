@@ -52,10 +52,11 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
           >
             <div>
-              {/* <Cloud className="w-8 h-8 text-[#00BFFF]" strokeWidth={1.5} /> */}
-              <Image src={"/logo/logo.png"} alt="Logo" width={32} height={32} />
+              <Image src={"/logo/logo.png"} alt="Logo" width={46} height={46} />
             </div>
-            <span className="text-gray-900 tracking-tight">Front Cloud</span>
+            <span className="text-gray-900 tracking-tight text-[18px]">
+              Front Cloud
+            </span>
           </motion.a>
 
           {/* Desktop Navigation */}

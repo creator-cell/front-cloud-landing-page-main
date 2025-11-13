@@ -51,14 +51,12 @@ export function Header() {
             className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
           >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {/* <Cloud className="w-8 h-8 text-[#00BFFF]" strokeWidth={1.5} /> */}
-              <Image src={"/logo/logo.png"} alt="Logo" width={32} height={32} />
-            </motion.div>
-            <span className="text-gray-900 tracking-tight">Front Cloud</span>
+            <div>
+              <Image src={"/logo/logo.png"} alt="Logo" width={46} height={46} />
+            </div>
+            <span className="text-gray-900 tracking-tight text-xl">
+              Front Cloud
+            </span>
           </motion.a>
 
           {/* Desktop Navigation */}

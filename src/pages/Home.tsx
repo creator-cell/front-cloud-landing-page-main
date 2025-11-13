@@ -20,7 +20,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient Orbs */}
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-[#00BFFF]/20 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
         <div
@@ -28,6 +28,20 @@ export function Hero() {
           style={{ animationDelay: "1s" }}
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-400/10 to-[#00BFFF]/10 rounded-full blur-3xl" />
+
+        {/* Faded AI illustration */}
+        <div className="absolute inset-0 opacity-30 mix-blend-screen">
+          <div className="relative w-full h-full">
+            <Image
+              src="/ai-overlay.svg"
+              alt="Faded AI circuit illustration"
+              fill
+              sizes="100vw"
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
 
         {/* Floating AI Neural Network Lines */}
         <svg className="absolute inset-0 w-full h-full opacity-10">
@@ -71,10 +85,10 @@ export function Hero() {
             }}
             transition={{
               duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
         ))}
       </div>
 
@@ -86,17 +100,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="mb-8 inline-flex items-center gap-3"
         >
-          <motion.div
-            className="relative"
-            animate={{
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
+          <div className="relative">
             {/* <Cloud className="w-20 h-20 text-[#00BFFF]" strokeWidth={1.5} /> */}
             <Image src={"/logo/logo.png"} alt="Logo" width={80} height={80} />
             <motion.div
@@ -111,7 +115,7 @@ export function Hero() {
                 ease: "easeInOut",
               }}
             />
-          </motion.div>
+          </div>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

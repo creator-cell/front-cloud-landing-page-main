@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { Cloud, Menu, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +55,8 @@ export function Header() {
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <Cloud className="w-8 h-8 text-[#00BFFF]" strokeWidth={1.5} />
+              {/* <Cloud className="w-8 h-8 text-[#00BFFF]" strokeWidth={1.5} /> */}
+              <Image src={"/logo/logo.png"} alt="Logo" width={32} height={32} />
             </motion.div>
             <span className="text-gray-900 tracking-tight">Front Cloud</span>
           </motion.a>

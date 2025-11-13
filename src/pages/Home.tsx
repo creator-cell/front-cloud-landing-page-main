@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { Cloud, Sparkles, TrendingUp, Users, Award, Zap } from "lucide-react";
+import Image from "next/image";
 
 const scrollToSection = (id: string) => {
   const element = document.querySelector(id);
@@ -96,7 +97,8 @@ export function Hero() {
               ease: "linear",
             }}
           >
-            <Cloud className="w-20 h-20 text-[#00BFFF]" strokeWidth={1.5} />
+            {/* <Cloud className="w-20 h-20 text-[#00BFFF]" strokeWidth={1.5} /> */}
+            <Image src={"/logo/logo.png"} alt="Logo" width={80} height={80} />
             <motion.div
               className="absolute inset-0 rounded-full bg-[#00BFFF]/20 blur-2xl"
               animate={{

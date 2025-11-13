@@ -54,7 +54,7 @@ export function Header() {
             <div>
               <Image src={"/logo/logo.png"} alt="Logo" width={46} height={46} />
             </div>
-            <span className="text-gray-900 tracking-tight text-xl">
+            <span className="text-gray-900 tracking-tight text-[18px]">
               Front Cloud
             </span>
           </motion.a>

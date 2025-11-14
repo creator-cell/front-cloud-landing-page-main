@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { Sparkles, TrendingUp, Users, Award } from "lucide-react";
 import Image from "next/image";
 
@@ -11,6 +12,7 @@ const scrollToSection = (id: string) => {
 };
 
 export function Hero() {
+  const [scrollProgress, setScrollProgress] = useState(0);
   const stats = [
     { icon: Users, value: "500+", label: "Clients Worldwide" },
     { icon: Award, value: "50+", label: "Awards Won" },
@@ -37,6 +39,20 @@ export function Hero() {
         'Enable-AI -Feature "Powered by Advanced AI & Machine Learning" -Status Active',
     },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const docHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = window.scrollY;
+      setScrollProgress(docHeight > 0 ? scrolled / docHeight : 0);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -215,7 +231,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
+          className="mt-20 pb-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -239,20 +255,31 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-[#00BFFF] rounded-full flex justify-center p-2">
+      {/* Scroll Indicators */}
+      {["left-4", "right-4"].map((position) => (
+        <motion.div
+          key={position}
+          className={`fixed top-1/2 ${position} -translate-y-1/2 z-50 hidden lg:flex`}
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
           <motion.div
-            className="w-1.5 h-1.5 bg-[#00BFFF] rounded-full"
-            animate={{ y: [0, 12, 0] }}
+            className="w-10 h-16 rounded-2xl border-2 border-[#00BFFF] flex justify-center p-2 bg-white/70 backdrop-blur"
+            animate={{
+              y: scrollProgress < 0.95 ? [0, 6, 0] : [0, -6, 0],
+            }}
             transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
+          >
+            <motion.div
+              className="w-1.5 h-1.5 rounded-full bg-[#00BFFF]"
+              animate={{
+                y: scrollProgress < 0.95 ? [0, 16, 0] : [0, -16, 0],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+        </motion.div>
+      ))}
     </section>
   );
 }

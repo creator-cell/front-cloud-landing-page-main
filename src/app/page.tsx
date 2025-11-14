@@ -1,11 +1,11 @@
-import { About } from "@/pages/About";
-import { AIShowcase } from "@/pages/AIShowcase";
-import { AITechnology } from "@/pages/AITechnology";
-import { CTA } from "@/pages/CTA";
-import { Header } from "@/pages/Header";
-import { Hero } from "@/pages/Home";
-import { Projects } from "@/pages/Projects";
-import { Services } from "@/pages/Services";
+import  About  from "@/pages/About";
+import  AIShowcase  from "@/pages/AIShowcase";
+import  AITechnology  from "@/pages/AITechnology";
+import  CTA  from "@/pages/CTA";
+import  Header  from "@/pages/Header";
+import  Hero  from "@/pages/Home";
+import  Projects  from "@/pages/Projects";
+import  Services  from "@/pages/Services";
 import { MessageCircle } from "lucide-react";
 
 const LandingPage = () => {

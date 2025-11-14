@@ -4,7 +4,7 @@ import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Code2, Brain, Rocket, Users, Globe, Zap } from "lucide-react";
 
-export function About() {
+export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

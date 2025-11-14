@@ -1,2 +1,3 @@
-"use client";
-export { default } from "@/components/ProjectCard";
+export default function ProjectCardPage() {
+  return null;
+}

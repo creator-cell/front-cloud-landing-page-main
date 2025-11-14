@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import { Cloud, Sparkles, TrendingUp, Users, Award, Zap } from "lucide-react";
+import { Sparkles, TrendingUp, Users, Award } from "lucide-react";
 import Image from "next/image";
 
 const scrollToSection = (id: string) => {
@@ -15,6 +15,27 @@ export function Hero() {
     { icon: Users, value: "500+", label: "Clients Worldwide" },
     { icon: Award, value: "50+", label: "Awards Won" },
     { icon: TrendingUp, value: "98%", label: "Success Rate" },
+  ];
+  const terminalLines = [
+    {
+      prompt: "PS C:\\FrontCloud>",
+      text: 'Invoke-Vision -Message "Building the Future of Software & AI"',
+    },
+    {
+      prompt: "PS C:\\FrontCloud>",
+      text:
+        'Write-Output "Transforming businesses through intelligent software solutions and cutting-edge AI technology."',
+    },
+    {
+      prompt: "PS C:\\FrontCloud>",
+      text:
+        'Write-Output "We blend innovation, expertise, and passion to deliver digital experiences that drive growth & efficiency."',
+    },
+    {
+      prompt: "PS C:\\FrontCloud>",
+      text:
+        'Enable-AI -Feature "Powered by Advanced AI & Machine Learning" -Status Active',
+    },
   ];
 
   return (
@@ -95,74 +116,98 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-12"
+          transition={{ duration: 0.8 }}
+          className="mt-12 mb-16 w-full max-w-4xl mx-auto"
         >
-          <h2 className="mb-4 bg-gradient-to-r from-gray-900 via-[#00BFFF] to-gray-900 bg-clip-text text-transparent text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-            Building the Future of Software & AI
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            Transforming businesses through intelligent software solutions and
-            cutting-edge AI technology. We combine innovation, expertise, and
-            passion to deliver exceptional digital experiences that drive growth
-            and efficiency.
-          </p>
-
-          {/* AI Powered Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00BFFF]/10 to-purple-500/10 rounded-full border border-[#00BFFF]/20"
+            className="rounded-[32px] border border-[#00BFFF]/30 bg-[#050f1f]/95 text-left shadow-[0_25px_80px_rgba(5,15,31,0.65)] overflow-hidden"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <Zap className="w-4 h-4 text-[#00BFFF]" />
-            </motion.div>
-            <span className="text-gray-700">
-              Powered by Advanced AI & Machine Learning
-            </span>
+            <div className="flex items-center gap-2 px-6 py-3 bg-[#08142a] border-b border-white/10">
+              <span className="inline-flex gap-2">
+                <span className="h-3 w-3 rounded-full bg-red-400/80" />
+                <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                <span className="h-3 w-3 rounded-full bg-green-400/80" />
+              </span>
+              <div className="ml-4 text-xs sm:text-sm font-mono text-cyan-100/80">
+                FrontCloud Session
+              </div>
+            </div>
+            <div className="p-6 sm:p-8 space-y-5 font-mono text-sm sm:text-base text-cyan-100">
+              {terminalLines.map((line, index) => (
+                <motion.div
+                  key={line.text}
+                  className="flex flex-wrap gap-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + index * 0.4 }}
+                >
+                  <span className="text-cyan-300">{line.prompt}</span>
+                  <span className="relative overflow-hidden">
+                    <motion.span
+                      className="inline-block"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{
+                        duration: 1.2,
+                        delay: 0.45 + index * 0.4,
+                        ease: "easeOut",
+                      }}
+                      style={{ whiteSpace: "nowrap" }}
+                    >
+                      {line.text}
+                    </motion.span>
+                    {index === terminalLines.length - 1 && (
+                      <motion.span
+                        className="ml-2 inline-block h-5 w-[2px] bg-cyan-100 align-middle"
+                        animate={{ opacity: [0, 1, 0] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                      />
+                    )}
+                  </span>
+                </motion.div>
+              ))}
+
+              <div className="pt-6 border-t border-white/5 flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 rgba(0,191,255,0.0)",
+                      "0 0 20px rgba(0,191,255,0.45)",
+                      "0 0 0 rgba(0,191,255,0.0)",
+                    ],
+                  }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
+                  onClick={() => scrollToSection("#projects")}
+                  className="relative px-8 py-3 rounded-full bg-gradient-to-r from-[#00BFFF] to-[#0088cc] text-white font-semibold overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Execute Projects
+                    <Sparkles className="w-4 h-4" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-white/25"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "100%" }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => scrollToSection("#contact")}
+                  className="px-8 py-3 rounded-full border border-cyan-200/60 text-cyan-100 font-semibold bg-white/5 backdrop-blur cursor-pointer"
+                >
+                  Open Channel
+                </motion.button>
+              </div>
+            </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-          className="flex flex-wrap gap-4 justify-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection("#projects")}
-            className="relative px-8 py-3 bg-[#00BFFF] text-white rounded-full overflow-hidden group cursor-pointer"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Explore Our Work
-              <Sparkles className="w-4 h-4" />
-            </span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#00BFFF] to-[#0099CC]"
-              whileHover={{
-                scale: 1.1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection("#contact")}
-            className="px-8 py-3 border-2 border-[#00BFFF] text-[#00BFFF] rounded-full hover:bg-[#00BFFF]/5 transition-colors cursor-pointer"
-          >
-            Contact Us
-          </motion.button>
         </motion.div>
 
         {/* Stats Section */}

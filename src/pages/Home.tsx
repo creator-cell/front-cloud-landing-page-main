@@ -104,14 +104,14 @@ export function Hero() {
         });
         setActiveLineIndex(lineIndex);
         charIndex += 1;
-        schedule(typeNext, 30);
+        schedule(typeNext, 100);
       } else {
         lineIndex += 1;
         charIndex = 0;
         if (lineIndex >= terminalLines.length) {
           restart();
         } else {
-          schedule(typeNext, 450);
+          schedule(typeNext, 700);
         }
       }
     };
@@ -248,12 +248,9 @@ export function Hero() {
                       <span className="block whitespace-pre-wrap text-transparent select-none">
                         {line.text}
                       </span>
-                      <motion.span
-                        key={`${line.text}-${typedLines[index]}`}
+                      <span
                         className="absolute inset-0 flex whitespace-pre-wrap"
-                        initial={{ opacity: 0.2 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.15 }}
+                        key={`${line.text}-${typedLines[index]}`}
                       >
                         <span>{typedLines[index] || "\u00a0"}</span>
                         {activeLineIndex === index && (
@@ -263,7 +260,7 @@ export function Hero() {
                             transition={{ duration: 0.9, repeat: Infinity }}
                           />
                         )}
-                      </motion.span>
+                      </span>
                     </span>
                   </motion.div>
                 ))}

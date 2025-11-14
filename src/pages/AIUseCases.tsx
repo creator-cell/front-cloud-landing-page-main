@@ -142,7 +142,7 @@ export function AIUseCases() {
                   </p>
 
                   {/* Read More Link */}
-                  <motion.div
+                  {/* <motion.div
                     className={`mt-4 flex items-center gap-2 bg-gradient-to-r ${useCase.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity`}
                   >
                     <span>Learn more</span>
@@ -152,7 +152,7 @@ export function AIUseCases() {
                     >
                       →
                     </motion.span>
-                  </motion.div>
+                  </motion.div> */}
                 </div>
 
                 {/* Animated Border Glow */}

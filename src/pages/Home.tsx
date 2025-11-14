@@ -130,15 +130,15 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 lg:px-6 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mt-12 mb-16 w-full max-w-4xl mx-auto"
+          className="mt-16 mb-20 w-full max-w-6xl mx-auto px-4 lg:px-6"
         >
           <motion.div
-            className="rounded-[32px] border border-[#00BFFF]/30 bg-[#050f1f]/95 text-left shadow-[0_25px_80px_rgba(5,15,31,0.65)] overflow-hidden"
+            className="w-full rounded-[36px] border border-[#00BFFF]/35 bg-[#050f1f]/95 text-left shadow-[0_30px_90px_rgba(5,15,31,0.65)] overflow-hidden"
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -162,17 +162,16 @@ export function Hero() {
                   transition={{ delay: 0.4 + index * 0.4 }}
                 >
                   <span className="text-cyan-300">{line.prompt}</span>
-                  <span className="relative overflow-hidden">
+                  <span className="relative flex-1 min-w-[220px]">
                     <motion.span
-                      className="inline-block"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
+                      className="block leading-relaxed"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: 1.2,
+                        duration: 0.6,
                         delay: 0.45 + index * 0.4,
                         ease: "easeOut",
                       }}
-                      style={{ whiteSpace: "nowrap" }}
                     >
                       {line.text}
                     </motion.span>

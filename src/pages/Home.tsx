@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Sparkles, TrendingUp, Users, Award } from "lucide-react";
 import Image from "next/image";
 
@@ -12,33 +12,116 @@ const scrollToSection = (id: string) => {
 };
 
 export function Hero() {
+  const floatingLines = useMemo(
+    () =>
+      Array.from({ length: 10 }, () => ({
+        x1: Math.random() * 100,
+        y1: Math.random() * 100,
+        x2: Math.random() * 100,
+        y2: Math.random() * 100,
+        delay: Math.random() * 2,
+      })),
+    []
+  );
+  const floatingBlobs = useMemo(
+    () =>
+      Array.from({ length: 20 }, () => ({
+        width: Math.random() * 300 + 120,
+        height: Math.random() * 300 + 120,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        moveX: Math.random() * 80 - 40,
+        moveY: Math.random() * 80 - 40,
+        duration: Math.random() * 10 + 12,
+      })),
+    []
+  );
+  const terminalLines = useMemo(
+    () => [
+      {
+        prompt: "PS C:\\FrontCloud>",
+        text: 'Invoke-Vision -Message "Building the Future of Software & AI"',
+      },
+      {
+        prompt: "PS C:\\FrontCloud>",
+        text:
+          'Write-Output "Transforming businesses through intelligent software solutions and cutting-edge AI technology."',
+      },
+      {
+        prompt: "PS C:\\FrontCloud>",
+        text:
+          'Write-Output "We blend innovation, expertise, and passion to deliver digital experiences that drive growth & efficiency."',
+      },
+      {
+        prompt: "PS C:\\FrontCloud>",
+        text:
+          'Enable-AI -Feature "Powered by Advanced AI & Machine Learning" -Status Active',
+      },
+    ],
+    []
+  );
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [typedLines, setTypedLines] = useState<string[]>(
+    () => terminalLines.map(() => "")
+  );
+  const [activeLineIndex, setActiveLineIndex] = useState(0);
   const stats = [
     { icon: Users, value: "500+", label: "Clients Worldwide" },
     { icon: Award, value: "50+", label: "Awards Won" },
     { icon: TrendingUp, value: "98%", label: "Success Rate" },
   ];
-  const terminalLines = [
-    {
-      prompt: "PS C:\\FrontCloud>",
-      text: 'Invoke-Vision -Message "Building the Future of Software & AI"',
-    },
-    {
-      prompt: "PS C:\\FrontCloud>",
-      text:
-        'Write-Output "Transforming businesses through intelligent software solutions and cutting-edge AI technology."',
-    },
-    {
-      prompt: "PS C:\\FrontCloud>",
-      text:
-        'Write-Output "We blend innovation, expertise, and passion to deliver digital experiences that drive growth & efficiency."',
-    },
-    {
-      prompt: "PS C:\\FrontCloud>",
-      text:
-        'Enable-AI -Feature "Powered by Advanced AI & Machine Learning" -Status Active',
-    },
-  ];
+
+  useEffect(() => {
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    const schedule = (fn: () => void, delay: number) => {
+      timeouts.push(setTimeout(fn, delay));
+    };
+
+    const restart = () => {
+      schedule(() => {
+        setTypedLines(terminalLines.map(() => ""));
+        lineIndex = 0;
+        charIndex = 0;
+        typeNext();
+      }, 2000);
+    };
+
+    const typeNext = () => {
+      const currentLine = terminalLines[lineIndex];
+      if (!currentLine) {
+        restart();
+        return;
+      }
+
+      if (charIndex <= currentLine.text.length) {
+        setTypedLines((prev) => {
+          const next = [...prev];
+          next[lineIndex] = currentLine.text.slice(0, charIndex);
+          return next;
+        });
+        setActiveLineIndex(lineIndex);
+        charIndex += 1;
+        schedule(typeNext, 30);
+      } else {
+        lineIndex += 1;
+        charIndex = 0;
+        if (lineIndex >= terminalLines.length) {
+          restart();
+        } else {
+          schedule(typeNext, 450);
+        }
+      }
+    };
+
+    typeNext();
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, [terminalLines]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,13 +165,13 @@ export function Hero() {
 
         {/* Floating AI Neural Network Lines */}
         <svg className="absolute inset-0 w-full h-full opacity-10">
-          {[...Array(10)].map((_, i) => (
+          {floatingLines.map((line, i) => (
             <motion.line
               key={i}
-              x1={`${Math.random() * 100}%`}
-              y1={`${Math.random() * 100}%`}
-              x2={`${Math.random() * 100}%`}
-              y2={`${Math.random() * 100}%`}
+              x1={`${line.x1}%`}
+              y1={`${line.y1}%`}
+              x2={`${line.x2}%`}
+              y2={`${line.y2}%`}
               stroke="#00BFFF"
               strokeWidth="2"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -99,33 +182,33 @@ export function Hero() {
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                delay: i * 0.4,
+                delay: line.delay,
               }}
             />
           ))}
         </svg>
 
-        {[...Array(20)].map((_, i) => (
+        {floatingBlobs.map((blob, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-gradient-to-r from-[#00BFFF]/10 to-[#00BFFF]/5 blur-xl"
             style={{
-              width: Math.random() * 300 + 100,
-              height: Math.random() * 300 + 100,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: blob.width,
+              height: blob.height,
+              left: `${blob.left}%`,
+              top: `${blob.top}%`,
             }}
             animate={{
-              x: [0, Math.random() * 100 - 50, 0],
-              y: [0, Math.random() * 100 - 50, 0],
+              x: [0, blob.moveX, 0],
+              y: [0, blob.moveY, 0],
               scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+              duration: blob.duration,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
         ))}
       </div>
 
@@ -137,11 +220,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="mt-16 mb-20 w-full max-w-6xl mx-auto px-4 lg:px-6"
         >
-          <motion.div
-            className="w-full rounded-[36px] border border-[#00BFFF]/35 bg-[#050f1f]/95 text-left shadow-[0_30px_90px_rgba(5,15,31,0.65)] overflow-hidden"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          >
+          <div className="w-full rounded-[36px] border border-[#00BFFF]/35 bg-[#050f1f]/95 text-left shadow-[0_30px_90px_rgba(5,15,31,0.65)] overflow-hidden min-h-[460px]">
             <div className="flex items-center gap-2 px-6 py-3 bg-[#08142a] border-b border-white/10">
               <span className="inline-flex gap-2">
                 <span className="h-3 w-3 rounded-full bg-red-400/80" />
@@ -152,39 +231,43 @@ export function Hero() {
                 FrontCloud Session
               </div>
             </div>
-            <div className="p-6 sm:p-8 space-y-5 font-mono text-sm sm:text-base text-cyan-100">
-              {terminalLines.map((line, index) => (
-                <motion.div
-                  key={line.text}
-                  className="flex flex-wrap gap-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + index * 0.4 }}
-                >
-                  <span className="text-cyan-300">{line.prompt}</span>
-                  <span className="relative flex-1 min-w-[220px]">
-                    <motion.span
-                      className="block leading-relaxed"
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: 0.45 + index * 0.4,
-                        ease: "easeOut",
-                      }}
-                    >
-                      {line.text}
-                    </motion.span>
-                    {index === terminalLines.length - 1 && (
+            <div className="p-6 sm:p-8 font-mono text-sm sm:text-base text-cyan-100 min-h-[320px] flex flex-col justify-between">
+              <div className="space-y-4">
+                {terminalLines.map((line, index) => (
+                  <motion.div
+                    key={line.text}
+                    className="flex flex-wrap gap-3 min-h-[52px]"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + index * 0.4 }}
+                  >
+                    <span className="text-cyan-300 text-[1.05em]">
+                      {line.prompt}
+                    </span>
+                    <span className="relative flex-1 min-w-[260px] whitespace-pre-wrap leading-relaxed pr-4">
+                      <span className="block whitespace-pre-wrap text-transparent select-none">
+                        {line.text}
+                      </span>
                       <motion.span
-                        className="ml-2 inline-block h-5 w-[2px] bg-cyan-100 align-middle"
-                        animate={{ opacity: [0, 1, 0] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                      />
-                    )}
-                  </span>
-                </motion.div>
-              ))}
+                        key={`${line.text}-${typedLines[index]}`}
+                        className="absolute inset-0 flex whitespace-pre-wrap"
+                        initial={{ opacity: 0.2 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <span>{typedLines[index] || "\u00a0"}</span>
+                        {activeLineIndex === index && (
+                          <motion.span
+                            className="inline-block h-5 w-[2px] bg-cyan-100 ml-1"
+                            animate={{ opacity: [0, 1, 0] }}
+                            transition={{ duration: 0.9, repeat: Infinity }}
+                          />
+                        )}
+                      </motion.span>
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
 
               <div className="pt-6 border-t border-white/5 flex flex-wrap gap-4">
                 <motion.button
@@ -222,7 +305,7 @@ export function Hero() {
                 </motion.button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Stats Section */}
@@ -230,7 +313,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className="mt-20 pb-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
+          className="mt-20 pb-16 grid grid-cols-3 gap-8 max-w-3xl w-full mx-auto"
         >
           {stats.map((stat, index) => (
             <motion.div

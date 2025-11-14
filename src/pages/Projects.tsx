@@ -12,7 +12,7 @@ import {
   FileText,
   BarChart,
 } from "lucide-react";
-import { ProjectCard } from "./ProjectCard";
+import  ProjectCard  from "./ProjectCard";
 
 export default function Projects() {
   const ref = useRef(null);

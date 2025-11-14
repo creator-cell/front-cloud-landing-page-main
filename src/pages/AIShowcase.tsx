@@ -4,7 +4,7 @@ import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Brain, Cpu, Network, Zap, Bot, Sparkles } from "lucide-react";
 
-export function AIShowcase() {
+export default function AIShowcase() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

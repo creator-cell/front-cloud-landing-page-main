@@ -11,7 +11,7 @@ import {
   Shield,
 } from "lucide-react";
 
-export function Services() {
+export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

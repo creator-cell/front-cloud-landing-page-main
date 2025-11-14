@@ -4,7 +4,7 @@ import { Cloud, Menu, X } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 
-export function Header() {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const backgroundColor = "rgba(255, 255, 255, 1)";

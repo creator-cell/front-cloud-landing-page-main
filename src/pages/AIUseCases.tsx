@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { TrendingUp, Shield, Users, Lightbulb } from "lucide-react";
 import { ImageWithFallback } from "@/figma/ImageWithFallback";
 
-export function AIUseCases() {
+export default function AIUseCases() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

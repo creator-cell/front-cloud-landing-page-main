@@ -11,7 +11,7 @@ const scrollToSection = (id: string) => {
   }
 };
 
-export function Hero() {
+export default function Hero() {
   const floatingLines = useMemo(
     () =>
       Array.from({ length: 10 }, () => ({

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 
-export function Projects() {
+export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

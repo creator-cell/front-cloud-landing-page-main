@@ -11,7 +11,7 @@ interface ProjectCardProps {
   tags?: string[];
 }
 
-export function ProjectCard({
+export default function ProjectCard({
   icon: Icon,
   title,
   description,

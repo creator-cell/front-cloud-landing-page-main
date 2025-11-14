@@ -19,7 +19,7 @@ const scrollToSection = (id: string) => {
   }
 };
 
-export function CTA() {
+export default function CTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showContactForm, setShowContactForm] = useState(false);

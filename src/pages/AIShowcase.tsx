@@ -165,46 +165,7 @@ export default function AIShowcase() {
         </div>
 
         {/* AI Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid md:grid-cols-4 gap-6"
-        >
-          {[
-            { value: "15+", label: "AI Models Deployed", icon: Brain },
-            { value: "80%", label: "Automation Rate", icon: Zap },
-            { value: "50M+", label: "Data Points Processed", icon: Network },
-            { value: "99.9%", label: "Model Accuracy", icon: Cpu },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-              }
-              transition={{ delay: 0.6 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-br from-[#00BFFF]/5 to-purple-500/5 rounded-2xl p-6 text-center border border-[#00BFFF]/20 relative overflow-hidden group"
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-[#00BFFF]/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
-                animate={{
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              />
-              <div className="relative">
-                <stat.icon className="w-8 h-8 text-[#00BFFF] mx-auto mb-3" />
-                <div className="text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+       
       </div>
     </section>
   );

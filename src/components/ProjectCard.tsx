@@ -84,7 +84,6 @@ export default function ProjectCard({
               animate={{ x: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              →
             </motion.span>
           </motion.div>
         </div>

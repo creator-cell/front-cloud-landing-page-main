@@ -65,11 +65,11 @@ export default function Hero() {
     () => terminalLines.map(() => "")
   );
   const [activeLineIndex, setActiveLineIndex] = useState(0);
-  const stats = [
-    { icon: Users, value: "500+", label: "Clients Worldwide" },
-    { icon: Award, value: "50+", label: "Awards Won" },
-    { icon: TrendingUp, value: "98%", label: "Success Rate" },
-  ];
+  const stats = []
+    // { icon: Users, value: "500+", label: "Clients Worldwide" },
+    // { icon: Award, value: "50+", label: "Awards Won" },
+    // { icon: TrendingUp, value: "98%", label: "Success Rate" },
+  // ];
 
   useEffect(() => {
     const timeouts: ReturnType<typeof setTimeout>[] = [];

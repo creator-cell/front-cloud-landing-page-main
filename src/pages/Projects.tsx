@@ -25,7 +25,7 @@ export default function Projects() {
       description:
         "Enterprise-grade application for handling company emergencies with real-time coordination, automated workflows, and instant notifications across multiple channels.",
       gradient: "from-red-500 to-orange-500",
-      tags: ["React", "Node.js", "WebSockets"],
+      tags: [],
     },
     {
       icon: Sparkles,
@@ -33,7 +33,7 @@ export default function Projects() {
       description:
         "AI-powered solutions for business automation and creativity, transforming workflows with intelligent assistance, content generation, and predictive analytics.",
       gradient: "from-purple-500 to-pink-500",
-      tags: ["AI/ML", "Python", "TensorFlow"],
+      tags: [],
     },
     {
       icon: ShoppingCart,
@@ -41,7 +41,7 @@ export default function Projects() {
       description:
         "Scalable platform for digital retail growth with advanced analytics, inventory management, payment processing, and seamless customer experiences across all devices.",
       gradient: "from-green-500 to-emerald-500",
-      tags: ["Next.js", "Stripe", "PostgreSQL"],
+      tags: [],
     },
     {
       icon: Layers,
@@ -49,7 +49,7 @@ export default function Projects() {
       description:
         "Unified workspace for creating photos, documents, and spreadsheets using AI-driven tools and real-time collaboration features for modern teams.",
       gradient: "from-[#00BFFF] to-blue-600",
-      tags: ["React", "WebRTC", "AWS"],
+      tags: [],
     },
   ];
 

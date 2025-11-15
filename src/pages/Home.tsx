@@ -65,11 +65,6 @@ export default function Hero() {
     () => terminalLines.map(() => "")
   );
   const [activeLineIndex, setActiveLineIndex] = useState(0);
-  const stats = []
-    // { icon: Users, value: "500+", label: "Clients Worldwide" },
-    // { icon: Award, value: "50+", label: "Awards Won" },
-    // { icon: TrendingUp, value: "98%", label: "Success Rate" },
-  // ];
 
   useEffect(() => {
     const timeouts: ReturnType<typeof setTimeout>[] = [];
@@ -305,33 +300,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="mt-20 pb-16 grid grid-cols-3 gap-8 max-w-3xl w-full mx-auto"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-              className="text-center group"
-            >
-              <motion.div
-                className="inline-flex items-center justify-center w-12 h-12 bg-[#00BFFF]/10 rounded-full mb-3 group-hover:bg-[#00BFFF]/20 transition-colors"
-                whileHover={{ scale: 1.1, rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <stat.icon className="w-6 h-6 text-[#00BFFF]" />
-              </motion.div>
-              <div className="text-gray-900">{stat.value}</div>
-              <div className="text-gray-600">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Scroll Indicators */}

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Front Cloud Creative",
+  title: "Front Cloud",
   description: "Innovative Cloud Solutions for Modern Businesses",
   icons: {
     icon: "/logo/logo.png",
